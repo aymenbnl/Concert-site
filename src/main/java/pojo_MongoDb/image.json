@@ -1,0 +1,11 @@
+{
+	"nom": "nom",
+	"lien": "url",
+	"date": "aaaa-MM-jj",
+	"auteur": {
+		"nom": "nom",
+		"prenom": "prenom",
+		"description": "description"
+	},
+	"<entite>": 1
+}
