@@ -12,11 +12,13 @@ public class Ticket {
     @Column(name = "id_ticket")
     private Integer idTicket;
 
-    @Column(name = "id_utilisateur")
-    private Integer idUtilisateur;
+    @JoinColumn(name = "id_utilisateur", referencedColumnName = "id_utilisateur")
+    @ManyToOne
+    private Utilisateur utilisateur;
 
-    @Column(name = "id_concert")
-    private Integer idConcert;
+    @JoinColumn(name = "id_concert", referencedColumnName = "id_concert")
+    @ManyToOne
+    private Concert concert;
 
     public Integer getIdTicket() {
         return this.idTicket;
@@ -26,19 +28,19 @@ public class Ticket {
         this.idTicket = idTicket;
     }
 
-    public Integer getIdUtilisateur() {
-        return this.idUtilisateur;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setIdUtilisateur(Integer idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
-    public Integer getIdConcert() {
-        return this.idConcert;
+    public Concert getConcert() {
+        return concert;
     }
 
-    public void setIdConcert(Integer idConcert) {
-        this.idConcert = idConcert;
+    public void setConcert(Concert concert) {
+        this.concert = concert;
     }
 }

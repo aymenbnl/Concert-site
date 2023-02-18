@@ -22,11 +22,13 @@ public class Concert {
     @Column(name = "duree_prev")
     private java.sql.Time dureePrev;
 
-    @Column(name = "id_groupe")
-    private Integer idGroupe;
+    @JoinColumn(name = "id_groupe", referencedColumnName = "id_groupe")
+    @ManyToOne
+    private Groupe groupe;
 
-    @Column(name = "id_soiree")
-    private Integer idSoiree;
+    @JoinColumn(name = "id_soiree", referencedColumnName = "id_soiree")
+    @ManyToOne
+    private Soiree soiree;
 
     public Integer getIdConcert() {
         return this.idConcert;
@@ -60,19 +62,19 @@ public class Concert {
         this.dureePrev = dureePrev;
     }
 
-    public Integer getIdGroupe() {
-        return this.idGroupe;
+    public Groupe getGroupe() {
+        return groupe;
     }
 
-    public void setIdGroupe(Integer idGroupe) {
-        this.idGroupe = idGroupe;
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
     }
 
-    public Integer getIdSoiree() {
-        return this.idSoiree;
+    public Soiree getSoiree() {
+        return soiree;
     }
 
-    public void setIdSoiree(Integer idSoiree) {
-        this.idSoiree = idSoiree;
+    public void setSoiree(Soiree soiree) {
+        this.soiree = soiree;
     }
 }

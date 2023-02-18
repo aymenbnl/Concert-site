@@ -1,6 +1,7 @@
 package pojo_MySql;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Salle")
@@ -30,6 +31,9 @@ public class Salle {
 
     @Column(name = "association")
     private String association;
+
+    @OneToMany(mappedBy = "salle")
+    private Set<Soiree> listSoiree;
 
     public Integer getIdSalle() {
         return this.idSalle;
@@ -85,5 +89,17 @@ public class Salle {
 
     public void setAssociation(String association) {
         this.association = association;
+    }
+
+    public Set<Soiree> getListSoiree() {
+        return listSoiree;
+    }
+
+    public void addListSoiree(Soiree soiree) {
+        this.listSoiree.add(soiree);
+    }
+
+    public void delListSoiree(Soiree soiree) {
+        this.listSoiree.remove(soiree);
     }
 }

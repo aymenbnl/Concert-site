@@ -22,8 +22,9 @@ public class Artiste {
     @Column(name = "age")
     private Integer age;
 
-    @Column(name = "id_groupe")
-    private Integer idGroupe;
+    @JoinColumn(name = "id_groupe", referencedColumnName = "id_groupe")
+    @ManyToOne
+    private Groupe groupe;
 
     public Integer getIdArtiste() {
         return this.idArtiste;
@@ -57,11 +58,11 @@ public class Artiste {
         this.age = age;
     }
 
-    public Integer getIdGroupe() {
-        return this.idGroupe;
+    public Groupe getGroupe() {
+        return groupe;
     }
 
-    public void setIdGroupe(Integer idGroupe) {
-        this.idGroupe = idGroupe;
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
     }
 }

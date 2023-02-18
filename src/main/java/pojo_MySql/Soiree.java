@@ -16,8 +16,9 @@ public class Soiree {
     @Column(name = "nom")
     private String nom;
 
-    @Column(name = "id_salle")
-    private Integer idSalle;
+    @JoinColumn(name = "id_salle", referencedColumnName = "id_salle")
+    @ManyToOne
+    private Salle salle;
 
     public Integer getIdSoiree() {
         return this.idSoiree;
@@ -35,11 +36,11 @@ public class Soiree {
         this.nom = nom;
     }
 
-    public Integer getIdSalle() {
-        return this.idSalle;
+    public Salle getSalle() {
+        return salle;
     }
 
-    public void setIdSalle(Integer idSalle) {
-        this.idSalle = idSalle;
+    public void setSalle(Salle salle) {
+        this.salle = salle;
     }
 }

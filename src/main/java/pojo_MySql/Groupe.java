@@ -1,6 +1,7 @@
 package pojo_MySql;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Groupe")
@@ -13,11 +14,41 @@ public class Groupe {
     @Column(name = "id_groupe")
     private Integer idGroupe;
 
+    @OneToMany(mappedBy = "groupe")
+    private Set<Artiste> listArtiste;
+
+    @OneToMany(mappedBy = "groupe")
+    private Set<Concert> listConcert;
+
     public Integer getIdGroupe() {
         return this.idGroupe;
     }
 
     public void setIdGroupe(Integer idGroupe) {
         this.idGroupe = idGroupe;
+    }
+
+    public Set<Artiste> getListArtiste() {
+        return listArtiste;
+    }
+
+    public void addListArtiste(Artiste artiste) {
+        this.listArtiste.add(artiste);
+    }
+
+    public void delListArtiste(Artiste artiste) {
+        this.listArtiste.remove(artiste);
+    }
+
+    public Set<Concert> getListConcert() {
+        return listConcert;
+    }
+
+    public void addListConcert(Concert concert) {
+        this.listConcert.add(concert);
+    }
+
+    public void delListConcert(Concert concert) {
+        this.listArtiste.remove(concert);
     }
 }
