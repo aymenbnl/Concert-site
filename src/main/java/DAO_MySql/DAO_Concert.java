@@ -13,14 +13,14 @@ public class DAO_Concert extends DAO<Concert>{
     private EntityManager em = null;
     @Override
     public Concert find(int id) throws DAOException {
-        Query query = em.createNamedQuery("Concert.FindById");
+        Query query = em.createNamedQuery("Concert.findById");
         query.setParameter("id", id);
 
         return (Concert) query.getSingleResult();
     }
 
     public List<Concert> getConcert() throws DAOException {
-        Query query = em.createNamedQuery("Concert.FindAll");
+        Query query = em.createNamedQuery("Concert.findAll");
 
         return (List<Concert>) query.getResultList();
     }

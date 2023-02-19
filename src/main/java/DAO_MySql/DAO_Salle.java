@@ -13,14 +13,14 @@ public class DAO_Salle extends DAO<Salle>{
     private EntityManager em = null;
     @Override
     public Salle find(int id) throws DAOException {
-        Query query = em.createNamedQuery("Salle.FindById");
+        Query query = em.createNamedQuery("Salle.findById");
         query.setParameter("id", id);
 
         return (Salle) query.getSingleResult();
     }
 
     public List<Salle> getSalles() throws DAOException {
-        Query query = em.createNamedQuery("Salle.FindAll");
+        Query query = em.createNamedQuery("Salle.findAll");
 
         return (List<Salle>) query.getResultList();
     }

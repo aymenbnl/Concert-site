@@ -6,8 +6,8 @@ import java.util.Set;
 @Entity
 @Table(name = "Salle")
 @NamedQueries({
-    @NamedQuery(name = "Salle.FindAll", query = "select s from Salle s"),
-    @NamedQuery(name = "Salle.FindById", query = "select s from Salle s where s.idSalle = :id"),
+    @NamedQuery(name = "Salle.findAll", query = "select s from Salle s"),
+    @NamedQuery(name = "Salle.findById", query = "select s from Salle s where s.idSalle = :id"),
 })
 public class Salle {
     @Id

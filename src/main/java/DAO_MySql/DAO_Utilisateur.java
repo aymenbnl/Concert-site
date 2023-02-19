@@ -13,14 +13,14 @@ public class DAO_Utilisateur extends DAO<Utilisateur>{
     private EntityManager em = null;
     @Override
     public Utilisateur find(int id) throws DAOException {
-        Query query = em.createNamedQuery("Utilisateur.FindById");
+        Query query = em.createNamedQuery("Utilisateur.findById");
         query.setParameter("id", id);
 
         return (Utilisateur) query.getSingleResult();
     }
 
     public List<Utilisateur> getUtilisateurs() throws DAOException {
-        Query query = em.createNamedQuery("Utilisateur.FindAll");
+        Query query = em.createNamedQuery("Utilisateur.findAll");
 
         return (List<Utilisateur>) query.getResultList();
     }

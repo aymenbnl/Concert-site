@@ -13,14 +13,14 @@ public class DAO_Soiree extends DAO<Soiree>{
     private EntityManager em = null;
     @Override
     public Soiree find(int id) throws DAOException {
-        Query query = em.createNamedQuery("Soiree.FindById");
+        Query query = em.createNamedQuery("Soiree.findById");
         query.setParameter("id", id);
 
         return (Soiree) query.getSingleResult();
     }
 
     public List<Soiree> getSoirees() throws DAOException {
-        Query query = em.createNamedQuery("Soiree.FindAll");
+        Query query = em.createNamedQuery("Soiree.findAll");
 
         return (List<Soiree>) query.getResultList();
     }

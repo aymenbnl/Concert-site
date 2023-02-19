@@ -14,14 +14,14 @@ public class DAO_Artiste extends DAO<Artiste>{
 
     @Override
     public Artiste find(int id) throws DAOException {
-        Query query = em.createNamedQuery("Artiste.FindById");
+        Query query = em.createNamedQuery("Artiste.findById");
         query.setParameter("id", id);
 
         return (Artiste) query.getSingleResult();
     }
 
     public List<Artiste> getArtistes() throws DAOException {
-        Query query = em.createNamedQuery("Artiste.FindAll");
+        Query query = em.createNamedQuery("Artiste.findAll");
 
         return (List<Artiste>) query.getResultList();
     }

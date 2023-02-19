@@ -13,14 +13,14 @@ public class DAO_Ticket extends DAO<Ticket>{
     private EntityManager em = null;
     @Override
     public Ticket find(int id) throws DAOException {
-        Query query = em.createNamedQuery("Ticket.FindById");
+        Query query = em.createNamedQuery("Ticket.findById");
         query.setParameter("id", id);
 
         return (Ticket) query.getSingleResult();
     }
 
     public List<Ticket> getTickets() throws DAOException {
-        Query query = em.createNamedQuery("Ticket.FindAll");
+        Query query = em.createNamedQuery("Ticket.findAll");
 
         return (List<Ticket>) query.getResultList();
     }
