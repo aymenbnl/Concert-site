@@ -11,16 +11,21 @@ import java.util.Set;
 })
 public class Groupe {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_groupe")
     private Integer idGroupe;
 
-    @OneToMany(mappedBy = "groupe")
+    @OneToMany(mappedBy = "groupe", cascade= CascadeType.REMOVE)
     private Set<Artiste> listArtiste;
 
-    @OneToMany(mappedBy = "groupe")
+    @OneToMany(mappedBy = "groupe", cascade= CascadeType.REMOVE)
     private Set<Concert> listConcert;
+    
+    public Groupe() {
+	}
 
-    public Integer getIdGroupe() {
+	public Integer getIdGroupe() {
         return this.idGroupe;
     }
 

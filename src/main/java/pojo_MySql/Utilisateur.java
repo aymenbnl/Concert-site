@@ -7,6 +7,8 @@ import java.util.Set;
 @Table(name = "Utilisateur")
 public class Utilisateur {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_utilisateur")
     private Integer idUtilisateur;
 

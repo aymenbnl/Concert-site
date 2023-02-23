@@ -11,6 +11,8 @@ import java.util.Set;
 })
 public class Salle {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_salle")
     private Integer idSalle;
 

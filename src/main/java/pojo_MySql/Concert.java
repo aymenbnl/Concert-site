@@ -10,6 +10,8 @@ import javax.persistence.*;
 })
 public class Concert {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_concert")
     private Integer idConcert;
 

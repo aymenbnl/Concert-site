@@ -9,6 +9,8 @@ import javax.persistence.*;
 })
 public class Ticket {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_ticket")
     private Integer idTicket;
 

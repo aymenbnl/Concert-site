@@ -10,9 +10,9 @@
         <class>pojo_MySql.Ticket</class>
         <class>pojo_MySql.Utilisateur</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test"/>
-            <property name="javax.persistence.jdbc.user" value="louis"/>
-            <property name="javax.persistence.jdbc.password" value="louis"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/zfm1-zmeric-ma_1"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.show_sql" value="true" />
         </properties>
