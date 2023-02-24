@@ -6,6 +6,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
+
 import pojo_MongoDb.Image;
 
 import java.util.ArrayList;
@@ -54,6 +56,15 @@ public class DAO_Image {
 		try {
 			MongoCollection<Image> images = db.getCollection(colImages, Image.class);
 			return images.find(eq("nom", nom)).first();
+		} catch (Exception e)  {
+			throw new MongoDAOException("Problème technique (" + e.getMessage() + ")");
+		}
+	}
+	
+	public Image findImage(ObjectId id) throws MongoDAOException {
+		try {
+			MongoCollection<Image> images = db.getCollection(colImages, Image.class);
+			return images.find(eq("_id", id)).first();
 		} catch (Exception e)  {
 			throw new MongoDAOException("Problème technique (" + e.getMessage() + ")");
 		}
@@ -196,6 +207,15 @@ public class DAO_Image {
 		try {
 			MongoCollection<Image> images = db.getCollection(colImages, Image.class);
 			images.deleteOne(eq("nom", nom));
+		} catch (Exception e)  {
+			throw new MongoDAOException("Problème technique (" + e.getMessage() + ")");
+		}
+	}
+	
+	public void deleteImage(ObjectId id) throws MongoDAOException {
+		try {
+			MongoCollection<Image> images = db.getCollection(colImages, Image.class);
+			images.deleteOne(eq("_id", id));
 		} catch (Exception e)  {
 			throw new MongoDAOException("Problème technique (" + e.getMessage() + ")");
 		}

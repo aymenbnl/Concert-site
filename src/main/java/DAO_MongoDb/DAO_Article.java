@@ -1,18 +1,21 @@
 package DAO_MongoDb;
 
+import static com.mongodb.client.model.Filters.eq;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
+
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import org.bson.conversions.Bson;
+
 import pojo_MongoDb.Article;
 import pojo_MongoDb.Auteur;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.mongodb.client.model.Filters.eq;
 
 public class DAO_Article {
 	private MongoDatabase db;
@@ -53,6 +56,15 @@ public class DAO_Article {
 		try {
 			MongoCollection<Article> articles = db.getCollection(colArticles, Article.class);
 			return articles.find(eq("nom", nom)).first();
+		} catch (Exception e)  {
+			throw new MongoDAOException("Problème technique (" + e.getMessage() + ")");
+		}
+	}
+	
+	public Article findArticle(ObjectId id) throws MongoDAOException {
+		try {
+			MongoCollection<Article> articles = db.getCollection(colArticles, Article.class);
+			return articles.find(eq("_id", id)).first();
 		} catch (Exception e)  {
 			throw new MongoDAOException("Problème technique (" + e.getMessage() + ")");
 		}
@@ -303,6 +315,15 @@ public class DAO_Article {
 		try {
 			MongoCollection<Article> articles = db.getCollection(colArticles, Article.class);
 			articles.deleteOne(eq("nom", nom));
+		} catch (Exception e)  {
+			throw new MongoDAOException("Problème technique (" + e.getMessage() + ")");
+		}
+	}
+	
+	public void deleteArticle(ObjectId id) throws MongoDAOException {
+		try {
+			MongoCollection<Article> articles = db.getCollection(colArticles, Article.class);
+			articles.deleteOne(eq("_id", id));
 		} catch (Exception e)  {
 			throw new MongoDAOException("Problème technique (" + e.getMessage() + ")");
 		}
