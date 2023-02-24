@@ -33,7 +33,7 @@ public class Concert {
     @ManyToOne
     private Soiree soiree;
 
-    @OneToMany(mappedBy = "concert")
+    @OneToMany(mappedBy = "concert", cascade= CascadeType.REMOVE)
     private List<Ticket> listTicket;
 
     public Integer getIdConcert() {
