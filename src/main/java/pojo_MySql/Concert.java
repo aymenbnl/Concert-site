@@ -1,6 +1,7 @@
 package pojo_MySql;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Concert")
@@ -18,11 +19,11 @@ public class Concert {
     @Column(name = "date")
     private java.sql.Date date;
 
-    @Column(name = "heure")
-    private java.sql.Time heure;
+    @Column(name = "heure_debut")
+    private java.sql.Time heure_debut;
 
-    @Column(name = "duree_prev")
-    private java.sql.Time dureePrev;
+    @Column(name = "heure_fin")
+    private java.sql.Time heure_fin;
 
     @JoinColumn(name = "id_groupe", referencedColumnName = "id_groupe")
     @ManyToOne
@@ -31,6 +32,9 @@ public class Concert {
     @JoinColumn(name = "id_soiree", referencedColumnName = "id_soiree")
     @ManyToOne
     private Soiree soiree;
+
+    @OneToMany(mappedBy = "concert")
+    private List<Ticket> listTicket;
 
     public Integer getIdConcert() {
         return this.idConcert;
@@ -48,20 +52,20 @@ public class Concert {
         this.date = date;
     }
 
-    public java.sql.Time getHeure() {
-        return this.heure;
+    public java.sql.Time getHeureDebut() {
+        return this.heure_debut;
     }
 
-    public void setHeure(java.sql.Time heure) {
-        this.heure = heure;
+    public void setHeureDebut(java.sql.Time heure_debut) {
+        this.heure_debut = heure_debut;
     }
 
-    public java.sql.Time getDureePrev() {
-        return this.dureePrev;
+    public java.sql.Time getHeureFin() {
+        return this.heure_debut;
     }
 
-    public void setDureePrev(java.sql.Time dureePrev) {
-        this.dureePrev = dureePrev;
+    public void setHeureFin(java.sql.Time heureFin) {
+        this.heure_fin = heureFin;
     }
 
     public Groupe getGroupe() {
@@ -78,5 +82,10 @@ public class Concert {
 
     public void setSoiree(Soiree soiree) {
         this.soiree = soiree;
+    }
+
+    @Override
+    public String toString(){
+        return this.idConcert + " " + this.date + " " + this.heure_debut + "=>" + this.heure_fin + " : " + this.listTicket;
     }
 }
