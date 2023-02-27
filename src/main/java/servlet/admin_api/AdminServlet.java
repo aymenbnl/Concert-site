@@ -48,7 +48,7 @@ public class AdminServlet extends HttpServlet {
 		String pathInfo = request.getPathInfo();
 
 		if(pathInfo == null) { // /admin-api/admins
-			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		} else { // /admin-api/admins/{id}
 			pathInfo = pathInfo.substring(1);
 			Integer id = ServletUtils.getIdInPath(pathInfo);
