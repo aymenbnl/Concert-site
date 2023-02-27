@@ -8,8 +8,6 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
-import org.hibernate.internal.build.AllowSysOut;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -191,7 +189,7 @@ public class ArtisteServlet extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pathInfo = request.getPathInfo();
 		if(pathInfo == null) { // /groupe-artiste-api/artistes
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		} else {
 			pathInfo = pathInfo.substring(1);
 			Integer id = ServletUtils.getIdInPath(pathInfo);

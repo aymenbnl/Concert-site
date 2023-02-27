@@ -31,4 +31,15 @@
     <url-pattern>/groupe-artiste-api/artistes</url-pattern>
     <url-pattern>/groupe-artiste-api/artistes/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>admins</display-name>
+    <servlet-name>admins</servlet-name>
+    <servlet-class>servlet.admin_api.AdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>admins</servlet-name>
+    <url-pattern>/admin-api/admins</url-pattern>
+    <url-pattern>/admin-api/admins/*</url-pattern>
+  </servlet-mapping>
 </web-app>
