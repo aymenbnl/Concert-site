@@ -92,9 +92,10 @@ public class AdminServlet extends HttpServlet {
 		    	
 		    } else {
 		    	try {
+		    		admin.setMotDePasse(ServletUtils.hashPassword(admin.getMotDePasse()));
 					daoAdmin.create(admin);
 					response.setStatus(HttpServletResponse.SC_CREATED);
-				} catch (DAOException e) {
+				} catch (Exception e) {
 					if(e.getMessage().contains("ConstraintViolationException")) {
 						response.setStatus(HttpServletResponse.SC_CONFLICT);
 					} else {
@@ -120,9 +121,35 @@ public class AdminServlet extends HttpServlet {
 			    String body = stringBuilder.toString();
 			    
 			    Admin admin = gson.fromJson(body, Admin.class);
+			    
 				try {
-					admin = daoAdmin.findByLoginAndPassword(admin.getLogin(), admin.getMotDePasse());
+					admin = daoAdmin.findByLoginAndPassword(admin.getLogin(), ServletUtils.hashPassword(admin.getMotDePasse()));
 					out.print(gson.toJson(admin));
+					response.setStatus(HttpServletResponse.SC_OK);
+				} catch (NoResultException e) {
+					response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+				} catch (Exception e) {
+					throw new ServletException(e);
+				}
+			} else {
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			}
+			out.flush();
+		}
+		
+	}
+	
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pathInfo = request.getPathInfo();
+		if(pathInfo == null) { // /admin-api/admins
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		} else {
+			pathInfo = pathInfo.substring(1);
+			Integer id = ServletUtils.getIdInPath(pathInfo);
+			if(id!=null) { // /admin-api/admins/{id}
+				try {
+					Admin admin = daoAdmin.find(id);
+					daoAdmin.delete(admin);
 					response.setStatus(HttpServletResponse.SC_OK);
 				} catch (NoResultException e) {
 					response.setStatus(HttpServletResponse.SC_NOT_FOUND);
