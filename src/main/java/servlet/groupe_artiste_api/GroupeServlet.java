@@ -3,6 +3,7 @@ package servlet.groupe_artiste_api;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -83,11 +84,21 @@ public class GroupeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		
 		String pathInfo = request.getPathInfo();
 		if(pathInfo == null) { // /groupe-artiste-api/groupes
 			try { 
 				Groupe g = new Groupe();
 				daoGroupe.create(g);
+				List<Groupe> groupes = daoGroupe.getGroupe();
+				Integer idGroupeCree = groupes.stream().mapToInt(gr -> gr.getIdGroupe()).max().getAsInt();
+				g=new Groupe();
+				g.setIdGroupe(idGroupeCree);
+				g.setListArtiste(new HashSet<>());
+				g.setListConcert(new HashSet<>());
+				out.print(gson.toJson(PojoToDTO.forGroupe(g)));
 				response.setStatus(HttpServletResponse.SC_CREATED);
 				
 			} catch (DAOException e) {
@@ -96,6 +107,8 @@ public class GroupeServlet extends HttpServlet {
 		} else {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
+		
+		out.flush();
 	}
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

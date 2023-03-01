@@ -56,4 +56,14 @@ public class Groupe {
     public void delListConcert(Concert concert) {
         this.listArtiste.remove(concert);
     }
+
+	public void setListArtiste(Set<Artiste> listArtiste) {
+		this.listArtiste = listArtiste;
+	}
+
+	public void setListConcert(Set<Concert> listConcert) {
+		this.listConcert = listConcert;
+	}
+    
+    
 }
