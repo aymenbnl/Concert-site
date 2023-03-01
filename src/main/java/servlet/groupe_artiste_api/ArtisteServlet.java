@@ -116,10 +116,17 @@ public class ArtisteServlet extends HttpServlet {
 		    	Groupe groupe=null;
 		    	
 		    	try {
+		    		response.setContentType("application/json");
+		    		PrintWriter out = response.getWriter();
+		    		
 					groupe = daoGroupe.find(idGroupe);
 					artiste.setGroupe(groupe);
 					daoArtiste.create(artiste);
+					Integer idArtisteCree = daoArtiste.getArtistes().stream().mapToInt(a -> a.getIdArtiste()).max().getAsInt();
+					out.print(gson.toJson(PojoToDTO.forArtiste(daoArtiste.find(idArtisteCree))));
+
 					response.setStatus(HttpServletResponse.SC_CREATED);
+					out.flush();
 				} catch (NoResultException e) {
 					response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 				} catch (DAOException e) {
