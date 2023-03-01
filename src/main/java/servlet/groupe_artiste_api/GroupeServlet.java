@@ -45,6 +45,7 @@ public class GroupeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		PrintWriter out = response.getWriter();
 	    
 		String pathInfo = request.getPathInfo();
@@ -85,6 +86,7 @@ public class GroupeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		PrintWriter out = response.getWriter();
 		
 		String pathInfo = request.getPathInfo();
@@ -112,6 +114,7 @@ public class GroupeServlet extends HttpServlet {
 	}
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String pathInfo = request.getPathInfo();
 		if(pathInfo == null) { // /groupe-artiste-api/groupes
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

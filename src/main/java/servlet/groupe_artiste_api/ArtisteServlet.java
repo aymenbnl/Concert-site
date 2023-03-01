@@ -50,6 +50,7 @@ public class ArtisteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		PrintWriter out = response.getWriter();
 	    
 		String pathInfo = request.getPathInfo();
@@ -89,6 +90,7 @@ public class ArtisteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String pathInfo = request.getPathInfo();
 		if(pathInfo == null) { // /groupe-artiste-api/artistes
 			BufferedReader reader = request.getReader();
@@ -144,6 +146,7 @@ public class ArtisteServlet extends HttpServlet {
 	}
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String pathInfo = request.getPathInfo();
 
 		if(pathInfo == null) { // /groupe-artiste-api/artistes
@@ -194,6 +197,7 @@ public class ArtisteServlet extends HttpServlet {
 	}
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String pathInfo = request.getPathInfo();
 		if(pathInfo == null) { // /groupe-artiste-api/artistes
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

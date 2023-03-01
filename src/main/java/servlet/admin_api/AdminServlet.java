@@ -16,7 +16,6 @@ import com.google.gson.Gson;
 import DAO_MySql.DAOException;
 import DAO_MySql.DAO_Admin;
 import pojo_MySql.Admin;
-import pojo_MySql.Artiste;
 import servlet.ServletUtils;
 
 /**
@@ -42,6 +41,7 @@ public class AdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 	    
@@ -73,6 +73,7 @@ public class AdminServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String pathInfo = request.getPathInfo();
 		if(pathInfo == null) { // /admin-api/admins
 			BufferedReader reader = request.getReader();
@@ -140,6 +141,7 @@ public class AdminServlet extends HttpServlet {
 	}
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String pathInfo = request.getPathInfo();
 		if(pathInfo == null) { // /admin-api/admins
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

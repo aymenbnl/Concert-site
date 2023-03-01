@@ -5,9 +5,13 @@ import java.util.Set;
 
 import DTO.ArtisteDTO;
 import DTO.GroupeDTO;
+import DTO.TicketDTO;
+import DTO.UtilisateurDTO;
 import pojo_MySql.Artiste;
 import pojo_MySql.Concert;
 import pojo_MySql.Groupe;
+import pojo_MySql.Ticket;
+import pojo_MySql.Utilisateur;
 
 public class PojoToDTO {
 	public static GroupeDTO forGroupe(Groupe groupe) {
@@ -40,5 +44,25 @@ public class PojoToDTO {
 		artisteDTO.setIdGroupe(artiste.getGroupe().getIdGroupe());
 		
 		return artisteDTO;
+	}
+	
+	public static TicketDTO forTicket(Ticket ticket) {
+		TicketDTO ticketDTO = new TicketDTO();
+
+		ticketDTO.setIdTicket(ticket.getIdTicket());
+		ticketDTO.setIdUtilisateur(ticket.getUtilisateur().getIdUtilisateur());
+		ticketDTO.setIdConcert(ticket.getConcert().getIdConcert());
+
+		return ticketDTO;
+	}
+
+	public static UtilisateurDTO forUtilisateur(Utilisateur utilisateur) {
+		UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
+
+		utilisateurDTO.setIdUtilisateur(utilisateur.getIdUtilisateur());
+		utilisateurDTO.setIdentifiant(utilisateur.getIdentifiant());
+		utilisateurDTO.setMotPasse(utilisateur.getMotDePasse());
+
+		return utilisateurDTO;
 	}
 }

@@ -4,7 +4,10 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Utilisateur")
+@Table(name = "Utilisateur")@NamedQueries({
+        @NamedQuery(name = "Utilisateur.findAll", query = "select t from Utilisateur t"),
+        @NamedQuery(name = "Utilisateur.findById", query = "select t from Utilisateur t where t.idUtilisateur = :id"),
+})
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +21,7 @@ public class Utilisateur {
     @Column(name = "mot_de_passe")
     private String motDePasse;
 
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(mappedBy = "utilisateur", cascade= CascadeType.REMOVE)
     private Set<Ticket> listTicket;
 
     public Integer getIdUtilisateur() {
