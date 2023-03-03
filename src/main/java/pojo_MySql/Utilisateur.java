@@ -7,6 +7,7 @@ import java.util.Set;
 @Table(name = "Utilisateur")@NamedQueries({
         @NamedQuery(name = "Utilisateur.findAll", query = "select t from Utilisateur t"),
         @NamedQuery(name = "Utilisateur.findById", query = "select t from Utilisateur t where t.idUtilisateur = :id"),
+        @NamedQuery(name = "Utilisateur.findByLoginAndPassword", query = "select a from Utilisateur a where a.identifiant = :login and a.motDePasse = :mdp"),
 })
 public class Utilisateur {
     @Id

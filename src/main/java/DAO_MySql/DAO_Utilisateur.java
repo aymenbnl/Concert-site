@@ -1,5 +1,6 @@
 package DAO_MySql;
 
+import pojo_MySql.Admin;
 import pojo_MySql.Utilisateur;
 
 import javax.persistence.EntityManager;
@@ -15,6 +16,14 @@ public class DAO_Utilisateur extends DAO<Utilisateur>{
     public Utilisateur find(int id) throws DAOException {
         Query query = em.createNamedQuery("Utilisateur.findById");
         query.setParameter("id", id);
+
+        return (Utilisateur) query.getSingleResult();
+    }
+    
+    public Utilisateur findByLoginAndPassword(String login, String mdp) throws DAOException {
+        Query query = em.createNamedQuery("Utilisateur.findByLoginAndPassword");
+        query.setParameter("login", login);
+        query.setParameter("mdp", mdp);
 
         return (Utilisateur) query.getSingleResult();
     }

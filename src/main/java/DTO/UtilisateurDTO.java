@@ -7,15 +7,15 @@ public class UtilisateurDTO {
 
     private Integer idUtilisateur;
     private String identifiant;
-    private String motPasse;
+    private String motDePasse;
 
     public UtilisateurDTO() {
     }
-    public UtilisateurDTO(Integer idUtilisateur, String identifiant, String motPasse) {
+    public UtilisateurDTO(Integer idUtilisateur, String identifiant, String motDePasse) {
         super();
         this.idUtilisateur = idUtilisateur;
         this.identifiant = identifiant;
-        this.motPasse = motPasse;
+        this.motDePasse = motDePasse;
     }
     public Integer getIdUtilisateur() {
         return idUtilisateur;
@@ -34,17 +34,17 @@ public class UtilisateurDTO {
     }
 
     public String  getMotPasse() {
-        return motPasse;
+        return motDePasse;
     }
 
-    public void setMotPasse(String motPasse) {
-        this.motPasse = motPasse;
+    public void setMotPasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUtilisateur, identifiant, motPasse);
+        return Objects.hash(idUtilisateur, identifiant, motDePasse);
     }
 
     @Override
@@ -57,12 +57,12 @@ public class UtilisateurDTO {
             return false;
         UtilisateurDTO other = (UtilisateurDTO) obj;
         return Objects.equals(identifiant, other.identifiant) && Objects.equals(idUtilisateur, other.idUtilisateur)
-                && Objects.equals(motPasse, other.motPasse) ;
+                && Objects.equals(motDePasse, other.motDePasse) ;
     }
 
     @Override
     public String toString() {
-        return "UtilisateurDTO [idUtilisateur =" + idUtilisateur + ", identifiant =" + identifiant + ", mot de passe=" + motPasse +"]";
+        return "UtilisateurDTO [idUtilisateur =" + idUtilisateur + ", identifiant =" + identifiant + ", mot de passe=" + motDePasse +"]";
     }
 
 }

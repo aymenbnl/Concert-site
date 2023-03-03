@@ -80,6 +80,13 @@ public class GroupeServlet extends HttpServlet {
 		
 		out.flush();
 	}
+	
+    @Override
+    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	response.setHeader("Access-Control-Allow-Origin", "*");
+    	response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    	response.setHeader("Access-Control-Allow-Headers", "*");
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
