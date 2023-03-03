@@ -19,6 +19,7 @@ public class DAO_Admin extends DAO<Admin> {
     }
     
     public Admin findByLoginAndPassword(String login, String mdp) throws DAOException {
+        System.err.println(login + " " + mdp);
         Query query = em.createNamedQuery("Admin.findByLoginAndPassword");
         query.setParameter("login", login);
         query.setParameter("mdp", mdp);

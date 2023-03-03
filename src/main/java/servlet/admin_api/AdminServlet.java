@@ -81,6 +81,7 @@ public class AdminServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setHeader("Access-Control-Allow-Origin", "*");
+		System.out.println("post");
 		String pathInfo = request.getPathInfo();
 		if(pathInfo == null) { // /admin-api/admins
 			BufferedReader reader = request.getReader();
@@ -129,7 +130,8 @@ public class AdminServlet extends HttpServlet {
 			    String body = stringBuilder.toString();
 			    
 			    Admin admin = gson.fromJson(body, Admin.class);
-			    
+				System.err.println(admin.getLogin() + " " + admin.getMotDePasse());
+
 				try {
 					admin = daoAdmin.findByLoginAndPassword(admin.getLogin(), ServletUtils.hashPassword(admin.getMotDePasse()));
 					out.print(gson.toJson(admin));

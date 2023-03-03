@@ -20,14 +20,18 @@ public class PojoToDTO {
 		groupeDTO.setIdGroupe(groupe.getIdGroupe());
 		
 		Set<ArtisteDTO> artistes = new HashSet<>();
-		for(Artiste a: groupe.getListArtiste()) {
-			artistes.add(forArtiste(a));
+		if(groupe.getListArtiste() != null) {
+			for(Artiste a: groupe.getListArtiste()) {
+				artistes.add(forArtiste(a));
+			}
 		}
 		groupeDTO.setListArtiste(artistes);
 		
 		Set<Integer> concerts = new HashSet<>();
-		for(Concert c: groupe.getListConcert()) {
-			concerts.add(c.getIdConcert());
+		if(groupe.getListConcert() != null) {
+			for(Concert c: groupe.getListConcert()) {
+				concerts.add(c.getIdConcert());
+			}
 		}
 		groupeDTO.setListConcert(concerts);
 		
